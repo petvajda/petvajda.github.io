@@ -422,12 +422,17 @@
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(24px);
+      opacity: 1;
+      transform: none;
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .reveal.visible { opacity: 1; transform: none; }
+    .js-loaded .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .js-loaded .reveal.visible { opacity: 1; transform: none; }
 
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -679,7 +684,10 @@
     <span>PM &middot; Builder &middot; Bass Player</span>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
+    // Add js-loaded so reveal animation only runs when JS works
+    document.body.classList.add('js-loaded');
+
     var revealEls = document.querySelectorAll('.reveal');
 
     var observer = new IntersectionObserver(function(entries) {
@@ -693,6 +701,10 @@
 
     revealEls.forEach(function(el) { observer.observe(el); });
 
-    // Fallback: show everything after 1.5s
+    // Fallback: show everything after 2s in case observer fails
     setTimeout(function() {
-      revealEls.fo
+      revealEls.forEach(function(el) { el.classList.add('visible'); });
+    }, 2000);
+  </script>
+</body>
+</html>
