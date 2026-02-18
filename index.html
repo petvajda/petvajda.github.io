@@ -444,6 +444,8 @@
       cursor: pointer;
       padding: 0.5rem;
       line-height: 1;
+      position: relative;
+      z-index: 1001;
     }
 
     /* ─── RESPONSIVE ─── */
@@ -507,7 +509,7 @@
 
   <nav>
     <a href="https://petvajda.github.io/" class="nav-logo" style="text-decoration:none;">PV</a>
-    <button class="mobile-menu-toggle" aria-label="Menu">☰</button>
+    <button class="mobile-menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links">
       <li><a href="/#about">About</a></li>
       <li><a href="/#apps">Apps</a></li>
